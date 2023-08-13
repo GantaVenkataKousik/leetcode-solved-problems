@@ -1,0 +1,20 @@
+class Solution {
+    public int mySqrt(int x) {
+        //solving this in O(logn) time
+        int s = 1 , e = x,mid=-1,ans = 0;
+        while(s<=e){
+            mid = s + (e-s)/2;
+            //when you are mutliplying two num
+            //which can range frmo 0 2^31-1 then
+            //definitely take care of it(overflow error)
+            if((long)mid*mid <= (long)x){
+                ans = mid;
+                s = mid+1;
+            }
+            else{
+                e = mid-1;
+            }
+        }
+        return ans;
+    }
+}
