@@ -1,0 +1,40 @@
+class Solution {
+    //finding peak 
+    private static int peak(int p[]){
+        int max = Integer.MIN_VALUE;
+        for(int i=0 ; i<p.length ; i++){
+            max = Math.max(max,p[i]);
+        }
+        return max;
+    }
+    
+    //calculating hours req if 
+    //if monkey consumes some k bananas for an hour
+    private static int time_required(int[] p,int time){
+        int t = 0;
+        for(int i=0 ; i<p.length ; i++){
+            t += Math.ceil((double)p[i]/time);
+        }
+        return t;
+    }
+    
+    public int minEatingSpeed(int[] piles, int h) {
+        int s = 0  , e = peak(piles);
+        // int min = Integer.MAX_VALUE,mid=0;
+        int mid = 0;
+        while(s<=e){
+            mid = s + (e-s)/2;
+            int time_req = time_required(piles,mid);
+            if(time_req<=h){
+                // min = Math.min(min,mid);
+                e = mid-1;
+            }
+            //the time exceeds with this eating rate
+            //so go for grater k rate than this
+            else{
+                s = mid+1;
+            }
+        }
+        return s;
+    }
+}
