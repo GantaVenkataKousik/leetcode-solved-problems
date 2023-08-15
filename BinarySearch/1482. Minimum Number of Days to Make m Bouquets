@@ -1,0 +1,56 @@
+class Solution {
+    
+    private static int max(int[] arr){
+        int max = Integer.MIN_VALUE;
+        for(int val : arr){
+            max = Math.max(max,val);
+        }   
+        return max;
+    }
+   
+    private static int min(int[] arr){
+        int min = Integer.MAX_VALUE;
+        for(int val : arr){
+            min = Math.min(min,val);
+        }   
+        return min;
+    }
+    
+    private static boolean isPossible(int[] bloomDay,int day,int k,int m){
+        int noOfBouquets = 0 , cnt =0;
+        for(int i=0 ; i<bloomDay.length ; i++){
+            if (bloomDay[i] <= day) {
+                cnt++;
+            } else {
+                noOfBouquets += (cnt / k);
+                cnt = 0;
+            }
+        }
+        noOfBouquets += cnt/k;
+        
+        return noOfBouquets>=m;
+    }
+    
+    public int minDays(int[] bloomDay, int m, int k) {
+        
+        
+        if(m*k>bloomDay.length)return -1;
+        
+        int s = min(bloomDay) , e = max(bloomDay) , day = 0;
+        int ans = Integer.MAX_VALUE;
+        
+        while(s<=e){
+            day = s + (e-s)/2;
+            if(isPossible(bloomDay,day,k,m)){
+                ans = Math.min(day,ans);
+                e = day-1;
+            }
+            else{
+                s = day+1;
+            }
+            
+        }
+        if(ans == Integer.MAX_VALUE)return -1;
+        return ans;
+    }
+}
