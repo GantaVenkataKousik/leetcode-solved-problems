@@ -1,0 +1,67 @@
+class pair{
+        int x;
+        int y;
+        pair(int i,int j){
+            x= i;
+            y = j;
+        }
+}
+class Solution {
+    
+    private static void changeColor(int[][] grid,Queue<pair> q,int color,int pixel){
+        
+        int  n = grid.length , m = grid[0].length; 
+        
+        
+        //all the four directions
+        int[] dx = {0,0,1,-1};
+        int[] dy = {1,-1,0,0};
+        
+        
+        //while the queue is empty
+        //apply BFS to calcualte the minutes requied 
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int k=0 ; k<size ; k++){
+
+                pair p1 = q.poll();
+                int x = p1.x;
+                int y = p1.y;
+                for(int i=0 ; i<4 ; i++){
+                    int newX = x + dx[i];
+                    int newY = y + dy[i];
+                    if (!(newX >= 0 && newY >= 0 && newX < n && newY < m)) continue;
+                    
+                    //as we are the colors of startign pixel
+                    //defiintely its four directions also will have the same colour
+                    //i.e we end up changing the pixels having same color as stating pixel to new color 
+                    if (grid[newX][newY] == pixel){
+                    
+                        grid[newX][newY] = color;
+                        pair p = new pair(newX, newY);
+                        q.add(p);
+                    }
+                }
+
+            }
+        }
+        
+        return ;
+    }
+    
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int pixel = image[sr][sc];
+        if(pixel == color)return image;
+        
+        image[sr][sc] = color;
+        
+        Queue<pair> q = new LinkedList<>();
+        pair p = new pair(sr,sc);
+        q.add(p);
+        changeColor(image,q,color,pixel);
+        
+        
+        
+        return image;
+    }
+}
