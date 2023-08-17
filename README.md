@@ -14,7 +14,6 @@ I've categorized the problems by topics to make it easier for you to find what y
 - Trees and Graphs
 - Sorting and Searching
 - Dynamic Programming
-- ... (add more topics as you cover them)
 
 ## Structure
 
