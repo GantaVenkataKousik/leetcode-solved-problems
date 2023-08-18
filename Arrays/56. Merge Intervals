@@ -1,0 +1,36 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                return a[0] - b[0];
+            }
+        });
+        
+        List<List<Integer>> ans=  new ArrayList<>();
+        int n = intervals.length;
+        
+        for(int i=0 ; i<n  ; i++){
+            int size = ans.size();
+            if(size== 0 || ans.get(size-1).get(1)<intervals[i][0]){
+                List<Integer> l = new ArrayList<>();
+                l.add(intervals[i][0]);
+                l.add(intervals[i][1]);
+                ans.add(l);
+            }
+            else{
+                if(intervals[i][1]>ans.get(size-1).get(1)){
+                    ans.get(size-1).set(1,intervals[i][1]);
+                }
+            }
+        }
+        int[][] res = new int[ans.size()][2];
+        for(int i=0 ; i<ans.size(); i++){
+            res[i][0] = ans.get(i).get(0);
+            res[i][1] = ans.get(i).get(1);
+        }
+        return res;
+        
+        
+    }
+}
