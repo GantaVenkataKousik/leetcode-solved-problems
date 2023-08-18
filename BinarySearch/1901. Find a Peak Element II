@@ -1,0 +1,63 @@
+class Solution {
+    
+    private static int rowMaxPosition(int[] row){
+        int maxIdx = 0 , maxVal = Integer.MIN_VALUE;
+        for(int i=0 ; i<row.length ; i++){
+            if(row[i] > maxVal){
+                maxVal = row[i];
+                maxIdx = i;
+            }
+        }
+        return maxIdx;
+    }
+    
+    public int[] findPeakGrid(int[][] mat) {
+        
+        int row = mat.length;
+        if(row==0){
+            return new int[]{-1,-1};
+        }
+        if(row == 1){
+            int max = Integer.MIN_VALUE,idx = -1;
+            for(int i=0 ; i<mat[0].length ; i++){
+               if(mat[0][i]>max){
+                   max = mat[0][i];
+                   idx = i;
+               }    
+            }
+            return new int[]{0,idx};
+        }
+        
+        
+        int startRow  = 0 , endRow = mat.length - 1  , middleRow = 0;
+        while(startRow <= endRow){
+            
+            middleRow = ( startRow + endRow ) /2;
+            
+            //finding the max val in that col
+            //so that i can check preceding anf succeding 
+            //row in the same column
+            int maxValInCol = rowMaxPosition(mat[middleRow]);
+            
+            
+            //checking the first row
+            if(middleRow==0 && mat[middleRow][maxValInCol]>mat[middleRow+1][maxValInCol])return new int[]{middleRow,maxValInCol};
+            
+            //checking the last row 
+            if(middleRow==mat.length-1 && mat[middleRow][maxValInCol]>mat[middleRow-1][maxValInCol])return new int[]{middleRow,maxValInCol};
+            
+            //anywhere in the middle 
+             if(middleRow>0 && middleRow<mat.length-1){
+                 if(mat[middleRow][maxValInCol]>mat[middleRow-1][maxValInCol] &&  mat[middleRow][maxValInCol]>mat[middleRow+1][maxValInCol])return new int[]{middleRow,maxValInCol};          
+             }
+            
+            if(middleRow<mat.length-1 && mat[middleRow][maxValInCol]<mat[middleRow+1][maxValInCol]){
+                startRow = middleRow + 1;
+            }
+            else{
+                 endRow = middleRow - 1;
+            }
+        }
+        return new int[]{-1,-1};
+    }
+}
