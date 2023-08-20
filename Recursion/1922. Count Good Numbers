@@ -1,0 +1,49 @@
+class Solution {
+    
+    
+    //this takes logn time using divide adn conquer
+    private static final int mod = (int)(1e9)+7;
+    private static long  power(long  x,long  n){
+        long  dup = n , ans = 1;
+        
+        if(dup<0) n *= -1;
+        while(n!=0){
+          if((n&1)==1){
+              ans = (ans*x)%mod;
+          }
+            x = (x*x)%mod;
+            n >>>=1;
+        }
+        if(dup < 0)ans = 1 / (ans%mod);
+        return ans%mod;
+    }
+    
+    public int countGoodNumbers(long n) {
+        //from 0 - 9 there are 5 even numbers 
+        //from 0- 9 there are 4 prime numbers
+        //so using combinatinos
+        //for example there are 5 places to fill
+        //that means we have 3 even indices which can be filled in 5c1*5c1*5c1
+        //same number can be repeated also
+        //in the same way for the odd indices
+        //we have the chance to fill in 4c1*4c1
+        
+        
+        //from this we can conclude that this goes in the pattern
+        // 5*4*5*4*5
+        
+        //pow(5,even)*pow(4,odd)
+        //checking overflow as we need to return int 
+        //divide it by 10^9+7
+        long  even = ((n&1)==1)?(n/2+1):(n/2);
+        long  odd = n/2;
+        
+        
+        long mul1=power(5,even)%mod;//5 power n/2
+        long mul2=power(4,odd)%mod;//4 power n/2
+        long ans=1;
+        ans=(ans*mul1)%mod;//computing total product
+        ans=(ans*mul2)%mod;//computing total product
+        return (int)(ans%mod);
+    }
+}
