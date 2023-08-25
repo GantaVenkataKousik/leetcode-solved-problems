@@ -1,0 +1,52 @@
+class Solution {
+    
+    private static boolean topo_bfs(int V,ArrayList<ArrayList<Integer>> adj){
+        Queue<Integer> q = new LinkedList<>();
+        int[] indegree = new int[V];
+        ArrayList<Integer> topo = new ArrayList<>();
+        
+        
+        for(int i=0 ; i<V ; i++){
+            for(int it : adj.get(i)){
+                indegree[it]++;
+            }
+        }
+        for(int i=0 ; i<V ; i++){
+            if(indegree[i] == 0){
+                q.add(i);
+            }
+        }
+        
+        while(!q.isEmpty()){
+            int node = q.poll();
+            topo.add(node);
+            
+            for(int it : adj.get(node)){
+                indegree[it]--;
+                if(indegree[it] == 0){
+                    q.add(it);
+                }
+            }
+            
+        }
+        
+        return topo.size()==V;
+    }
+    
+    public boolean canFinish(int numCourses, int[][] pre) {
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for(int i=0 ; i<numCourses ; i++){
+            adj.add(new ArrayList<>());
+        }
+        
+        int v = pre.length;
+        for(int i=0 ; i<v ; i++){
+            adj.get(pre[i][1]).add(pre[i][0]);
+        }
+        
+        return topo_bfs(numCourses,adj);
+        
+        
+        
+    }
+}
