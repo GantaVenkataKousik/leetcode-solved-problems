@@ -1,0 +1,79 @@
+
+class pair{
+        int x;
+        int y;
+        pair(int i,int j){
+            x= i;
+            y = j;
+        }
+}
+
+
+
+class Solution {
+    private static void makringBoundaries(char[][] grid, Queue<pair> q, boolean[][] visited) {
+        int n = grid.length, m = grid[0].length;
+
+        // All the four directions
+        int[] dx = {0, 0, 1, -1};
+        int[] dy = {1, -1, 0, 0};
+
+        // While the queue is not empty
+        // Apply BFS to calculate the minutes required
+        while (!q.isEmpty()) {
+            int size = q.size();
+            for (int k = 0; k < size; k++) {
+                pair p1 = q.poll();
+                int x = p1.x;
+                int y = p1.y;
+                for (int i = 0; i < 4; i++) {
+                    int newX = x + dx[i];
+                    int newY = y + dy[i];
+                    if (newX >= 0 && newY >= 0 && newX < n && newY < m && grid[newX][newY] == 'O' && !visited[newX][newY]) {
+                        visited[newX][newY] = true;
+                        pair p = new pair(newX, newY);
+                        q.add(p);
+                    }
+                }
+            }
+        }
+        return ;
+    }
+
+    
+    public void solve(char[][] grid) {
+    int n = grid.length, m = grid[0].length;
+    boolean visited[][] = new boolean[n][m];
+
+    Queue<pair> q = new LinkedList<>();
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (i == 0 || j == 0 || i == n - 1 || j == m - 1) {
+                if (grid[i][j] == 'O') {
+                    visited[i][j] = true;
+                    pair p = new pair(i, j);
+                    q.add(p);
+                }
+            }
+        }
+    }
+
+    // Now my queue contains all the 'O' at the boundaries
+    // so that I can include 'O' cells that connect to the boundaries
+    // and mark them as visited
+    makringBoundaries(grid, q, visited);
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            // Check for unvisited marked 'O' cells
+            // that means they are not connected in any way to the boundary
+            if (grid[i][j] == 'O' && visited[i][j] == false) {
+                grid[i][j] = 'X';
+            }
+        }
+    }
+        
+    return ;
+    }
+}
