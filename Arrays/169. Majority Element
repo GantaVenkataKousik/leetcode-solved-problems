@@ -1,0 +1,28 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        //AS it is clear that majority element always exist 
+        //no checking is needed
+        //using moore voting algorithm
+        //no extra space and sorting
+         int cnt = 0 , ele = 0  , size = nums.length;
+        for(int i=0  ; i<size;  i++){
+            if(cnt==0){
+                ele = nums[i];
+                cnt++;
+            }
+            else if(nums[i] == ele){
+                cnt++;
+            }
+            else{
+                cnt--;
+            }
+        }
+        int check = 0;
+        for(int val:nums){
+            if(val==ele)check++;
+        }
+        return (check > size/2)?ele:-1;
+        //this can be also done by hashing or hashmap using extra space
+        //in linear time but sorting the array
+    }
+}
