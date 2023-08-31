@@ -1,0 +1,38 @@
+class Solution {
+    public int trap(int[] arr) {
+        int n = arr.length;
+        if(n==1)return 0;
+        if(n==2)return 0;
+        
+        //this code only works there are three blocks 
+        //as it is not possible to fill water when there are 2 blokcs
+
+        int[] left = new int[n];
+        int[] right = new int[n];
+        left[0] = arr[0];
+        right[n-1] = arr[n-1];
+        
+
+        
+        //for every block
+        //finding the left max fro every bloock
+        //max block from right
+        
+        for(int i=1;i<n;i++){
+            left[i] = Math.max(arr[i],left[i-1]);
+        }
+        for(int i=n-2;i>0;i--){
+            right[i] = Math.max(arr[i],right[i+1]);
+        }
+        right[0] = Math.max(arr[0],right[1]);
+        
+        
+        //watter can be filled  = water level - height of the block
+        int water_Filled = 0;
+        for(int i=0 ; i<n ; i++){
+            int min  = Math.min(left[i],right[i]);
+            if(min > arr[i])water_Filled += (min-arr[i]);
+        }
+        return water_Filled;
+    }
+}
