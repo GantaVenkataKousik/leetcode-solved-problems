@@ -1,0 +1,33 @@
+class Solution {
+    static ListNode reverseLL(ListNode head){
+        
+        ListNode prev=null,next=null,curr=head;
+        while(curr!=null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+    public ListNode addTwoNumbers(ListNode first, ListNode second) {
+        if(first==null && second ==null)return  null;
+        int digit = 0,carry = 0;
+        int sum= 0;
+        ListNode dummy = new ListNode(-1);
+        ListNode temp=dummy;
+        
+        while(first!=null || second!=null || carry!=0){
+            int x = (first!=null)?first.val:0;
+            int y = (second!=null)?second.val:0;
+            sum = x+y+carry;
+            digit = sum%10;
+            carry = sum / 10;
+            temp.next = new ListNode(digit);
+            temp = temp.next;
+            if(first!=null)first = first.next;
+            if(second!=null)second = second.next;
+        }
+        return dummy.next;
+    }
+}
