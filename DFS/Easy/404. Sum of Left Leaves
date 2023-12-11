@@ -1,0 +1,20 @@
+class Solution {
+
+    public static int Helper(TreeNode root){
+        if(root == null)return 0;
+        if(root.left == null &&  root.right == null)return root.val;
+        
+        int left = Helper(root.left);
+        int right = 0;
+        if(root.right!=null &&  (root.right.left!=null || root.right.right!=null)){
+            right = Helper(root.right);
+        }
+        return left+right;
+    }
+
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root==null)return 0;
+        if(root.left==null  &&  root.right==null)return 0;
+        return Helper(root);
+    }
+}
