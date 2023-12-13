@@ -1,0 +1,30 @@
+class Solution {
+
+
+    private static void Helper(int k,int n,List<List<Integer>> ans,List<Integer> l,int sum,int idx){
+
+        if(k==0){
+            if(sum==n){
+                ans.add(new ArrayList<>(l));
+            }
+            return ;
+        }
+        
+        for(int i=idx ; i<10 ; i++){
+            List<Integer> temp = new ArrayList<>(l);
+            temp.add(i);
+            if(sum+i <= n){
+                Helper(k-1,n,ans,temp,sum+i,i+1);
+            }
+        }
+        return ;
+    }
+
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> ans = new ArrayList<>();
+        int max = n*(n+1)/2;
+        if(k>max)return ans;
+        Helper(k,n,ans,new ArrayList<>(),0,1);
+        return ans;
+    }
+}
