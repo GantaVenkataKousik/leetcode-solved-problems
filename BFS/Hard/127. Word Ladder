@@ -1,0 +1,50 @@
+class Node{
+    int index;
+    int cnt;
+    Node(int index,int cnt){
+        this.index = index;
+        this.cnt = cnt;
+    }
+}
+
+class Solution {
+
+    private static boolean checkDis(String word,String currWord){
+        int temp = 0 , n = word.length();
+        for(int i=0 ; i<n  ; i++){
+            if(word.charAt(i)!=currWord.charAt(i))temp++;
+        }
+        return temp==1;
+    }
+
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        int n = wordList.size();
+        Queue<Node> q = new LinkedList<>();
+        boolean visited[] = new boolean[n];
+
+        for(int i=0 ; i<n ; i++){
+            if(checkDis(beginWord,wordList.get(i))){
+                q.add(new Node(i,1));
+                visited[i] = true;
+            }
+        }
+
+        while(!q.isEmpty()){
+            Node temp = q.poll();
+            int index = temp.index;
+            int cnt = temp.cnt;
+
+            if(wordList.get(index).equals(endWord))return cnt+1;
+
+            for(int i=0 ; i<n  ; i++){
+                if(!visited[i] && checkDis(wordList.get(index),wordList.get(i))){
+                    q.add(new Node(i,cnt+1));
+                    visited[i] = true;
+                } 
+            }
+        }
+
+        return 0;
+         
+    }
+}
