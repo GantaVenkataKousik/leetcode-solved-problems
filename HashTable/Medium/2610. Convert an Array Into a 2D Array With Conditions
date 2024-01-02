@@ -1,0 +1,46 @@
+class Solution {
+
+    //Approach -1
+        public List<List<Integer>> findMatrix(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<Integer,Integer> mp = new HashMap<>();
+        for(int ele : nums)mp.put(ele,mp.getOrDefault(ele,0)+1);
+
+        while(!mp.isEmpty()){
+            List<Integer> temp = new ArrayList<>();
+            List<Integer> erase = new ArrayList<>();
+            for(Map.Entry<Integer,Integer> entry : mp.entrySet()){
+                int k = entry.getKey();
+                int cnt = entry.getValue();
+                temp.add(k);
+                cnt--;
+                if(cnt == 0){
+                    erase.add(k);
+                }
+                mp.put(k,cnt);
+            }   
+            ans.add(temp);
+            for(int ele:erase){
+                mp.remove(ele);
+            }
+        }
+        return ans;
+
+
+    //Approach - 2 ----> Optimised
+
+    public List<List<Integer>> findMatrix(int[] nums) {
+ 
+        List<List<Integer>> ans = new ArrayList<>();
+        int freq[] = new int[nums.length+1];
+
+        for(int ele : nums){
+            if(freq[ele]>=ans.size()){
+                ans.add(new ArrayList<>());
+            }
+            ans.get(freq[ele]).add(ele);
+            freq[ele]++;
+        }
+        return ans;
+    }
+}
