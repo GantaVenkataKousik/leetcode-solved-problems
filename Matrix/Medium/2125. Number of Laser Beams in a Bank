@@ -1,0 +1,23 @@
+class Solution {
+    public int numberOfBeams(String[] bank) {
+        int n = bank.length;
+        int[] arr = new int[n];
+        String s = "";
+        for(int i=0 ; i<n ; i++){
+            int cnt = 0;
+            for(int j=0 ; j<bank[i].length() ; j++){
+                if(bank[i].charAt(j)=='1')cnt++;
+            }
+            arr[i]= cnt;
+        }
+        int totalLaserBeams = 0;
+        int j= 0;
+        for(int i=1 ; i<n ; i++){
+            if(arr[i]!=0){
+                totalLaserBeams += (arr[j]*arr[i]);
+                j = i;
+            }
+        }
+        return totalLaserBeams;
+    }
+}
