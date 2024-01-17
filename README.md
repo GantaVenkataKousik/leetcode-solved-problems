@@ -1,20 +1,25 @@
-🚀 Reaching for the Stars: Over 500 LeetCode Challenges Conquered! 💪🌟
-A thrilling odyssey dedicated to "MEDIUM" and "HARD" problems, consuming vast amounts of time and determination. ⏳🔥
+<h1 align="center">💻 LeetCode Achievements 🔥🌟💡</h1>
 
-🎉 Celebrating the 75% milestone scaling the heights of complexity! 💡🔝
-Each problem solved felt like unlocking a new level in the coding universe. 🚀💻
+<p>Pushing my limits on LeetCode, I've achieved notable milestones. Take a look at my recent accomplishments:</p>
 
-⏰ Managing time became an art. Balancing each challenge, strategizing, and conquering them within constraints. 🎨⚙️
-🧪🖋️ Exploring edge cases was a thrilling roller-coaster ride. Crafting resilient, adaptable solutions felt like cracking secret codes! 🎢🔍
+<!-- Replace the placeholders with your actual stats and images -->
+<p align="center">
+    <img src="https://img.shields.io/badge/Coding_Streak-60_days-brightgreen" alt="coding-streak">
+    <img src="https://img.shields.io/badge/Problems_Solved-200+-blue" alt="problems-solved">
+    <img src="https://img.shields.io/badge/Current_Rank-Top_3_percent-orange" alt="current-rank">
+</p>
 
-🧠 Conquering complexity became a daily ritual. Mastering algorithms and structures felt like leveling up in a video game! 🎮🌐
-📚 Learning new data structures and algorithms was like unearthing hidden treasures in a digital labyrinth. 🗝️💎
+<h2>🚀 LeetCode 400+ Challenges Crushed 📸💻</h2>
 
-⏱️ Optimizing for efficiency wasn't just about solving problems; it was about turbocharging solutions for speed and scalability! ⚡📈
+<img src="https://i.postimg.cc/gjPxfTpV/Screenshot-2024-01-17-225345.png" alt="project-screenshot" width="100%" height="400/">
 
-Facing challenges:
+<h2>🌟 Best Snaps - Mastering Coding Challenges 📸💻</h2>
 
-⏰ Time constraints at times affected the depth of analysis, causing a few solutions to miss their full potential. 🕒❌
-⌛ Prolonged coding sessions became elusive, impacting the ability to dive deep into complex problems. 😩🔍
+<!-- You can also add a snapshot or screenshot of your streak for visual representation -->
+<img src="https://i.postimg.cc/W1pkNCkS/Screenshot-2024-01-17-225411.png" alt="project-screenshot" width="40%" height="400/">
 
-"As I cross this milestone, I'm eager to unleash these refined skills in future coding conquests. Learning from successes and challenges fuels our growth! 🌱 Let's forge ahead, breaking barriers together!" 🌟🚀
+
+
+<p>Discover snapshots showcasing my problem-solving skills on LeetCode. From algorithmic puzzles to complex data structures, I've tackled a wide array of challenges, reflecting my commitment and proficiency. 🧠💡</p>
+
+<p>Feel free to explore my LeetCode profile for more coding adventures! 🚀🔍</p>
